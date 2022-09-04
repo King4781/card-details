@@ -1,0 +1,12 @@
+.button {
+    display: block;
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--white);
+    background-color: var(--very-dark-grayish-violet);
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--very-dark-grayish-violet);
+    border-radius: 10px;
+    cursor: pointer;
+}

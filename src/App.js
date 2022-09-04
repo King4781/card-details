@@ -1,25 +1,51 @@
-import logo from './logo.svg';
+import { useReducer } from 'react';
+
+import { Layout, Form, FrontCard, BackCard } from './components';
+
 import './App.css';
 
+const initialState = {
+    name: '',
+    cardNumber: '',
+    month: '',
+    year: '',
+    cvc: ''
+};
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        case 'UPDATE_FIELD':
+            return {
+                ...state,
+                [action.payload.field]: action.payload.value
+            }
+        case 'RESET':
+            return initialState;
+        default:
+            return state;
+    }
+};
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      const [state, dispatch] = useReducer(reducer, initialState);
+
+    const handleUpdate = (field, value) => {
+        dispatch({ type: 'UPDATE_FIELD', payload: { field, value }});
+    };
+
+    const reset = () => {
+      dispatch({ type: 'RESET' });
+    };
+
+      return (
+          <Layout
+              leftColumn={[
+                  <FrontCard state={state} key={1} />,
+                  <BackCard state={state} key={2} />
+              ]}
+              rightColumn={<Form {...{ handleUpdate, reset, state }} />}
+          />
+      );
 }
 
 export default App;

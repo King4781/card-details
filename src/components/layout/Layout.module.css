@@ -1,0 +1,42 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.containerCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.sectionLeft {
+    background-image: url("../../assets/images/bg-main-mobile.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex: 0 0 30%;
+    padding-top: 3rem;
+}
+
+.sectionRight {
+    flex: 0 0 70%;
+}
+
+@media only screen and (min-width: 992px) {
+    .main {
+        flex-direction: row;
+    }
+
+    .sectionLeft {
+        background-image: url("../../assets/images/bg-main-desktop.png");
+    }
+}
